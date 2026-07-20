@@ -43,26 +43,19 @@ A responsive, dynamic, and interactive web application for an **Online Grocery D
 ## 🚀 How to Run Locally
 1. Clone the repository:
    ```bash
-   git clone <your-repository-url>
+   git clone https://github.com/DeepakPatel370/online-grocery-delivery.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd TT
+   cd online-grocery-delivery
    ```
 3. Open `index.html` in your favorite web browser or launch with Live Server.
 
 ---
 
-## 📦 How to Push Day 1 Task to GitHub
+## 📦 Repository & Remote Tracking
 
-To push your Day 1 work to your GitHub repository:
+- **GitHub Repository**: [DeepakPatel370/online-grocery-delivery](https://github.com/DeepakPatel370/online-grocery-delivery.git)
+- **Primary Branch**: `main`
+- **Daily Commits**: Each day's work will be committed and pushed directly to `origin/main`.
 
-1. **Create a new repository on GitHub** (e.g., `online-grocery-delivery`).
-2. Run the following commands in your terminal:
-   ```bash
-   git add .
-   git commit -m "feat(day1): setup project structure, responsive navbar, search bar and footer"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/online-grocery-delivery.git
-   git push -u origin main
-   ```
