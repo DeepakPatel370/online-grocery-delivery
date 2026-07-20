@@ -1,0 +1,193 @@
+/* FreshMart Online Grocery - Custom Design Tokens & Utilities */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-green: #10b981;
+  --primary-dark: #047857;
+  --primary-light: #d1fae5;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --dark-slate: #0f172a;
+  --light-bg: #f8fafc;
+  --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  --hover-shadow: 0 20px 30px -10px rgba(16, 185, 129, 0.15);
+  --glass-bg: rgba(255, 255, 255, 0.88);
+  --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--light-bg);
+  color: #334155;
+  overflow-x: hidden;
+}
+
+/* Announcement Bar */
+.announcement-bar {
+  background: linear-gradient(90deg, #047857 0%, #10b981 50%, #059669 100%);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* Glassmorphism Navbar */
+.navbar-custom {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all 0.3s ease;
+}
+
+.navbar-brand-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark-slate);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.navbar-brand-logo i {
+  color: var(--primary-green);
+  font-size: 1.75rem;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #475569 !important;
+  margin: 0 0.2rem;
+  padding: 0.5rem 0.85rem !important;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--primary-green) !important;
+  background-color: var(--primary-light);
+}
+
+/* Search Bar Styling */
+.search-wrapper {
+  position: relative;
+  max-width: 380px;
+  width: 100%;
+}
+
+.search-input {
+  border-radius: 50px;
+  padding-left: 2.75rem;
+  padding-right: 1.25rem;
+  border: 1.5px solid #cbd5e1;
+  background-color: #f8fafc;
+  font-size: 0.925rem;
+  transition: all 0.25s ease;
+}
+
+.search-input:focus {
+  border-color: var(--primary-green);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+/* Cart Button */
+.btn-cart {
+  position: relative;
+  background-color: var(--primary-green);
+  color: #ffffff;
+  border-radius: 50px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+.btn-cart:hover {
+  background-color: var(--primary-dark);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(16, 185, 129, 0.3);
+}
+
+.cart-badge {
+  background-color: var(--accent-amber);
+  color: #000000;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 50px;
+  padding: 0.2rem 0.55rem;
+}
+
+/* Main Container Placeholder */
+.main-content {
+  min-height: 60vh;
+}
+
+/* Hero Placeholder Card (For Day 1 layout check) */
+.hero-placeholder-card {
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+  border: 2px dashed #a7f3d0;
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+/* Footer Styling */
+footer {
+  background-color: var(--dark-slate);
+  color: #cbd5e1;
+}
+
+footer h5 {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+footer a {
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: var(--primary-green);
+}
+
+.social-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  margin-right: 0.5rem;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.social-icon-btn:hover {
+  background: var(--primary-green);
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
