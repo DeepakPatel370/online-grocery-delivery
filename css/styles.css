@@ -137,13 +137,223 @@ body {
   min-height: 60vh;
 }
 
-/* Hero Placeholder Card (For Day 1 layout check) */
-.hero-placeholder-card {
-  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
-  border: 2px dashed #a7f3d0;
-  border-radius: 16px;
-  padding: 3rem 2rem;
+/* ==========================================================================
+   DAY 2: HERO CAROUSEL, FEATURE CARDS & PROMOTIONAL BANNERS
+   ========================================================================== */
+
+/* Color Utility Helpers */
+.bg-emerald-light { background-color: rgba(16, 185, 129, 0.25); }
+.text-success-light { color: #6ee7b7; }
+.bg-rose-light { background-color: rgba(244, 63, 94, 0.25); }
+.text-rose { color: #f43f5e; }
+.text-amber { color: #f59e0b; }
+.bg-emerald-soft { background-color: #ecfdf5; }
+.bg-amber-soft { background-color: #fffbeb; }
+.bg-blue-soft { background-color: #eff6ff; }
+.bg-rose-soft { background-color: #fff1f2; }
+
+.btn-amber {
+  background-color: var(--accent-amber);
+  color: #000000;
+  border: none;
+}
+
+.btn-amber:hover {
+  background-color: #d97706;
+  color: #ffffff;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.tracking-wider {
+  letter-spacing: 0.75px;
+}
+
+.fw-extrabold {
+  font-weight: 800;
+}
+
+.max-w-lg {
+  max-width: 520px;
+}
+
+/* Hero Carousel */
+.hero-carousel {
+  position: relative;
+  box-shadow: 0 15px 35px -10px rgba(4, 120, 87, 0.25);
+}
+
+.hero-slide {
+  min-height: 420px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero-slide.slide-1 {
+  background: linear-gradient(135deg, rgba(4, 120, 87, 0.92) 0%, rgba(16, 185, 129, 0.85) 100%), 
+              url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&auto=format&fit=crop&q=80') center/cover;
+}
+
+.hero-slide.slide-2 {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(5, 150, 105, 0.88) 100%), 
+              url('https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=1200&auto=format&fit=crop&q=80') center/cover;
+}
+
+.hero-slide.slide-3 {
+  background: linear-gradient(135deg, rgba(180, 83, 9, 0.92) 0%, rgba(245, 158, 11, 0.85) 100%), 
+              url('https://images.unsplash.com/photo-1528751014936-863e6e7a319c?w=1200&auto=format&fit=crop&q=80') center/cover;
+}
+
+.hero-slide-img {
+  height: 280px;
+  width: 100%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.4s ease;
+}
+
+.hero-slide:hover .hero-slide-img {
+  transform: scale(1.03);
+}
+
+/* Floating Image Badge */
+.hero-image-badge {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background: #ffffff;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  z-index: 10;
+  border: 3px solid #f59e0b;
+  animation: floatBadge 3s ease-in-out infinite alternate;
+}
+
+.hero-image-badge.express-badge {
+  border-color: #10b981;
+}
+
+.hero-image-badge.bogo-badge {
+  border-color: #f43f5e;
+}
+
+.badge-content {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+@keyframes floatBadge {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+/* Carousel Indicators Styling */
+.hero-carousel .carousel-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: none;
+  margin: 0 6px;
+  transition: all 0.3s ease;
+}
+
+.hero-carousel .carousel-indicators .active {
+  width: 32px;
+  border-radius: 12px;
+  background-color: var(--accent-amber);
+}
+
+.hero-carousel .carousel-control-prev-icon,
+.hero-carousel .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+/* Feature Cards / Value Propositions */
+.feature-card {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px -10px rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.feature-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Promotional Banner Grid */
+.promo-banner-card {
+  min-height: 260px;
+  transition: all 0.35s ease;
+}
+
+.promo-banner-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.25) !important;
+}
+
+.promo-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+  z-index: 0;
+}
+
+.promo-banner-card:hover .promo-card-bg {
+  transform: scale(1.08);
+}
+
+.promo-card-bg.bg-veggies {
+  background-image: linear-gradient(to top, rgba(4, 120, 87, 0.95), rgba(4, 120, 87, 0.45)), 
+                    url('https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&auto=format&fit=crop&q=80');
+}
+
+.promo-card-bg.bg-dairy {
+  background-image: linear-gradient(to top, rgba(190, 18, 60, 0.95), rgba(190, 18, 60, 0.45)), 
+                    url('https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=600&auto=format&fit=crop&q=80');
+}
+
+.promo-card-bg.bg-fruits {
+  background-image: linear-gradient(to top, rgba(15, 118, 110, 0.95), rgba(15, 118, 110, 0.45)), 
+                    url('https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=600&auto=format&fit=crop&q=80');
+}
+
+.promo-card-bg.bg-household {
+  background-image: linear-gradient(to top, rgba(30, 58, 138, 0.95), rgba(30, 58, 138, 0.45)), 
+                    url('https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=600&auto=format&fit=crop&q=80');
 }
 
 /* Footer Styling */

@@ -11,7 +11,7 @@ A responsive, dynamic, and interactive web application for an **Online Grocery D
   - Responsive Navbar with Logo, Navigation Links, Search Bar, and Cart Badge counter.
   - Announcement top-bar and multi-column responsive Footer.
   - Custom CSS tokens (`css/styles.css`), modern typography, and glassmorphism styling.
-- [ ] **Day 2: Hero Section, Offers Carousel & Promotional Banners**
+- [x] **Day 2: Hero Section, Offers Carousel & Promotional Banners**
   - Bootstrap 5 Carousel featuring discount banners, festival offers, and combo deals.
   - Feature badges for value propositions (30-min express delivery, 100% organic, 24/7 support).
 - [ ] **Day 3: Grocery Categories Section & Responsive Product Cards**

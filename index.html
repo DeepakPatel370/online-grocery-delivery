@@ -82,19 +82,296 @@
 
   <!-- Main Content Container -->
   <main class="main-content container py-4">
-    <!-- Day 1 Welcome Banner & Setup Marker -->
-    <section class="my-4" id="home">
-      <div class="hero-placeholder-card shadow-sm">
-        <span class="badge bg-success px-3 py-2 fs-6 rounded-pill mb-3">Day 1 Completed 🎉</span>
-        <h1 class="fw-bold text-dark mb-2">Welcome to FreshMart Online Grocery Delivery</h1>
-        <p class="text-muted max-w-xl mx-auto lead mb-4">
-          Day 1 repository setup, responsive navigation, search bar, and custom design tokens are active.
-        </p>
-        <div class="d-flex justify-content-center gap-2 flex-wrap">
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle-fill text-success"></i> Bootstrap 5 Grid</span>
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle-fill text-success"></i> Glassmorphism Header</span>
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle-fill text-success"></i> Dynamic Search</span>
-          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check-circle-fill text-success"></i> Responsive Footer</span>
+
+    <!-- Hero Carousel Section -->
+    <section class="mb-5" id="home">
+      <div id="heroCarousel" class="carousel slide carousel-fade hero-carousel rounded-4 shadow-sm overflow-hidden" data-bs-ride="carousel" data-bs-interval="4500">
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+          <!-- Slide 1: Farm Fresh Organic Sale -->
+          <div class="carousel-item active hero-slide slide-1">
+            <div class="container py-5 px-4 px-lg-5">
+              <div class="row align-items-center">
+                <div class="col-lg-7 text-white py-3 py-lg-4">
+                  <span class="badge bg-warning text-dark font-weight-bold px-3 py-2 rounded-pill mb-3 text-uppercase tracking-wider">
+                    <i class="bi bi-fire me-1"></i> Mega Weekend Deal
+                  </span>
+                  <h1 class="display-4 fw-bold mb-3 text-shadow">
+                    Farm Fresh Organic <span class="text-warning">Vegetables & Fruits</span>
+                  </h1>
+                  <p class="lead mb-4 text-light opacity-90 max-w-lg">
+                    Get up to <strong>50% OFF</strong> on premium pesticide-free organic produce harvested fresh daily. Supercharged with health & taste!
+                  </p>
+                  <div class="d-flex gap-3 flex-wrap">
+                    <a href="#offers" class="btn btn-warning btn-lg rounded-pill fw-bold shadow-sm px-4">
+                      <i class="bi bi-bag-check-fill me-2"></i> Shop Fresh Deals
+                    </a>
+                    <a href="#categories" class="btn btn-outline-light btn-lg rounded-pill fw-medium px-4">
+                      Explore Categories
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block text-center position-relative">
+                  <div class="hero-image-badge shadow-lg">
+                    <div class="badge-content">
+                      <span class="fs-6 fw-bold text-success">UP TO</span>
+                      <span class="display-6 fw-bold text-danger my-0">50%</span>
+                      <span class="small fw-semibold text-dark">DISCOUNT</span>
+                    </div>
+                  </div>
+                  <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&auto=format&fit=crop&q=80" alt="Fresh Produce" class="img-fluid rounded-4 shadow hero-slide-img">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: 30-Min Express Delivery -->
+          <div class="carousel-item hero-slide slide-2">
+            <div class="container py-5 px-4 px-lg-5">
+              <div class="row align-items-center">
+                <div class="col-lg-7 text-white py-3 py-lg-4">
+                  <span class="badge bg-emerald-light text-success font-weight-bold px-3 py-2 rounded-pill mb-3 text-uppercase tracking-wider">
+                    <i class="bi bi-lightning-charge-fill me-1"></i> Superfast Delivery
+                  </span>
+                  <h1 class="display-4 fw-bold mb-3 text-shadow">
+                    Groceries at Your Doorstep in <span class="text-success-light">30 Minutes</span>
+                  </h1>
+                  <p class="lead mb-4 text-light opacity-90 max-w-lg">
+                    Running low on kitchen essentials? Order now and experience lightning-fast delivery with live order tracking.
+                  </p>
+                  <div class="d-flex gap-3 flex-wrap">
+                    <a href="#categories" class="btn btn-success btn-lg rounded-pill fw-bold shadow-sm px-4">
+                      <i class="bi bi-cart-fill me-2"></i> Start Ordering
+                    </a>
+                    <a href="#offers" class="btn btn-outline-light btn-lg rounded-pill fw-medium px-4">
+                      Free Shipping Info
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block text-center position-relative">
+                  <div class="hero-image-badge express-badge shadow-lg">
+                    <div class="badge-content">
+                      <i class="bi bi-stopwatch-fill fs-3 text-warning mb-1"></i>
+                      <span class="fs-5 fw-bold text-dark">30 MINS</span>
+                      <span class="small fw-medium text-muted">Guaranteed</span>
+                    </div>
+                  </div>
+                  <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80" alt="Express Delivery" class="img-fluid rounded-4 shadow hero-slide-img">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Breakfast & Dairy BOGO Offer -->
+          <div class="carousel-item hero-slide slide-3">
+            <div class="container py-5 px-4 px-lg-5">
+              <div class="row align-items-center">
+                <div class="col-lg-7 text-white py-3 py-lg-4">
+                  <span class="badge bg-rose-light text-rose font-weight-bold px-3 py-2 rounded-pill mb-3 text-uppercase tracking-wider">
+                    <i class="bi bi-stars me-1"></i> Special Combo
+                  </span>
+                  <h1 class="display-4 fw-bold mb-3 text-shadow">
+                    Buy 1 Get 1 Free on <span class="text-amber">Artisanal Dairy & Eggs</span>
+                  </h1>
+                  <p class="lead mb-4 text-light opacity-90 max-w-lg">
+                    Start your day right with pure organic milk, rich Greek yogurt, farm-fresh eggs & premium cheeses.
+                  </p>
+                  <div class="d-flex gap-3 flex-wrap">
+                    <a href="#offers" class="btn btn-amber btn-lg rounded-pill fw-bold shadow-sm px-4 text-dark">
+                      <i class="bi bi-gift-fill me-2"></i> Claim BOGO Deal
+                    </a>
+                    <a href="#categories" class="btn btn-outline-light btn-lg rounded-pill fw-medium px-4">
+                      Browse Dairy
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block text-center position-relative">
+                  <div class="hero-image-badge bogo-badge shadow-lg">
+                    <div class="badge-content">
+                      <span class="fs-6 fw-bold text-rose">BUY 1</span>
+                      <span class="fs-4 fw-bold text-dark my-0">GET 1</span>
+                      <span class="badge bg-danger text-white rounded-pill mt-1">FREE</span>
+                    </div>
+                  </div>
+                  <img src="https://images.unsplash.com/photo-1528751014936-863e6e7a319c?w=600&auto=format&fit=crop&q=80" alt="Dairy Products" class="img-fluid rounded-4 shadow hero-slide-img">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon rounded-circle p-3" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon rounded-circle p-3" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Value Propositions / Feature Badges Section -->
+    <section class="mb-5" id="features">
+      <div class="row g-3 g-md-4">
+        <!-- Feature 1 -->
+        <div class="col-6 col-lg-3">
+          <div class="feature-card h-100 p-3 p-md-4 rounded-4 shadow-sm border-0 d-flex flex-column align-items-center text-center">
+            <div class="feature-icon-wrapper mb-3 bg-emerald-soft text-success">
+              <i class="bi bi-truck fs-2"></i>
+            </div>
+            <h6 class="fw-bold text-dark mb-1">30-Min Express</h6>
+            <p class="text-muted small mb-0">Lightning fast doorstep delivery guaranteed</p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="col-6 col-lg-3">
+          <div class="feature-card h-100 p-3 p-md-4 rounded-4 shadow-sm border-0 d-flex flex-column align-items-center text-center">
+            <div class="feature-icon-wrapper mb-3 bg-amber-soft text-amber">
+              <i class="bi bi-patch-check-fill fs-2"></i>
+            </div>
+            <h6 class="fw-bold text-dark mb-1">100% Organic</h6>
+            <p class="text-muted small mb-0">Direct from certified local fresh farms</p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="col-6 col-lg-3">
+          <div class="feature-card h-100 p-3 p-md-4 rounded-4 shadow-sm border-0 d-flex flex-column align-items-center text-center">
+            <div class="feature-icon-wrapper mb-3 bg-blue-soft text-primary">
+              <i class="bi bi-shield-lock-fill fs-2"></i>
+            </div>
+            <h6 class="fw-bold text-dark mb-1">Secure Payments</h6>
+            <p class="text-muted small mb-0">100% encrypted & safe payment options</p>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="col-6 col-lg-3">
+          <div class="feature-card h-100 p-3 p-md-4 rounded-4 shadow-sm border-0 d-flex flex-column align-items-center text-center">
+            <div class="feature-icon-wrapper mb-3 bg-rose-soft text-danger">
+              <i class="bi bi-headset fs-2"></i>
+            </div>
+            <h6 class="fw-bold text-dark mb-1">24/7 Support</h6>
+            <p class="text-muted small mb-0">Friendly customer care whenever you need</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Promotional Offers Banner Grid -->
+    <section class="mb-5" id="offers">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+          <span class="text-success fw-bold text-uppercase tracking-wider small">
+            <i class="bi bi-tags-fill me-1"></i> Hot Deals & Discounts
+          </span>
+          <h2 class="fw-bold text-dark mb-0">Special Promotional Banners</h2>
+        </div>
+        <span class="badge bg-danger px-3 py-2 rounded-pill fs-6 fw-semibold d-none d-sm-inline-block">
+          <i class="bi bi-clock-history me-1"></i> Limited Time Offers
+        </span>
+      </div>
+
+      <div class="row g-4">
+        <!-- Banner 1: Veggie Box -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card promo-banner-card border-0 rounded-4 overflow-hidden shadow-sm h-100 position-relative">
+            <div class="promo-card-bg bg-veggies"></div>
+            <div class="card-body p-4 d-flex flex-column justify-content-between position-relative z-1 text-white">
+              <div>
+                <span class="badge bg-warning text-dark fw-bold rounded-pill mb-2 px-3 py-1">SAVE 30%</span>
+                <h4 class="fw-bold mb-2">Weekend Organic Veggie Box</h4>
+                <p class="small text-light opacity-90 mb-3">Fresh spinach, crisp apples, bananas & tomatoes.</p>
+              </div>
+              <div>
+                <div class="d-flex align-items-baseline gap-2 mb-3">
+                  <span class="fs-4 fw-extrabold text-warning">$12.99</span>
+                  <span class="text-light text-decoration-line-through small opacity-75">$18.50</span>
+                </div>
+                <a href="#categories" class="btn btn-light btn-sm rounded-pill fw-bold w-100 text-dark shadow-sm">
+                  Shop Deal <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner 2: Dairy & Eggs BOGO -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card promo-banner-card border-0 rounded-4 overflow-hidden shadow-sm h-100 position-relative">
+            <div class="promo-card-bg bg-dairy"></div>
+            <div class="card-body p-4 d-flex flex-column justify-content-between position-relative z-1 text-white">
+              <div>
+                <span class="badge bg-danger text-white fw-bold rounded-pill mb-2 px-3 py-1">BOGO FREE</span>
+                <h4 class="fw-bold mb-2">Artisanal Dairy & Fresh Eggs</h4>
+                <p class="small text-light opacity-90 mb-3">Whole organic milk, Greek yogurt & cheddar cheese.</p>
+              </div>
+              <div>
+                <div class="d-flex align-items-baseline gap-2 mb-3">
+                  <span class="fs-4 fw-extrabold text-warning">$8.49</span>
+                  <span class="text-light text-decoration-line-through small opacity-75">$14.99</span>
+                </div>
+                <a href="#categories" class="btn btn-light btn-sm rounded-pill fw-bold w-100 text-dark shadow-sm">
+                  Claim BOGO <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner 3: Exotic Fruits -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card promo-banner-card border-0 rounded-4 overflow-hidden shadow-sm h-100 position-relative">
+            <div class="promo-card-bg bg-fruits"></div>
+            <div class="card-body p-4 d-flex flex-column justify-content-between position-relative z-1 text-white">
+              <div>
+                <span class="badge bg-success text-white fw-bold rounded-pill mb-2 px-3 py-1">FLAT $10 OFF</span>
+                <h4 class="fw-bold mb-2">Exotic Imported Fruit Basket</h4>
+                <p class="small text-light opacity-90 mb-3">Dragonfruit, fresh berries, kiwis & avocados.</p>
+              </div>
+              <div>
+                <div class="d-flex align-items-baseline gap-2 mb-3">
+                  <span class="fs-4 fw-extrabold text-warning">$24.99</span>
+                  <span class="text-light text-decoration-line-through small opacity-75">$34.99</span>
+                </div>
+                <a href="#categories" class="btn btn-light btn-sm rounded-pill fw-bold w-100 text-dark shadow-sm">
+                  Get Offer <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner 4: Household Essentials -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card promo-banner-card border-0 rounded-4 overflow-hidden shadow-sm h-100 position-relative">
+            <div class="promo-card-bg bg-household"></div>
+            <div class="card-body p-4 d-flex flex-column justify-content-between position-relative z-1 text-white">
+              <div>
+                <span class="badge bg-info text-dark fw-bold rounded-pill mb-2 px-3 py-1">UP TO 40% OFF</span>
+                <h4 class="fw-bold mb-2">Eco Household Essentials Pack</h4>
+                <p class="small text-light opacity-90 mb-3">Plant-based dish liquid & microfiber cloths.</p>
+              </div>
+              <div>
+                <div class="d-flex align-items-baseline gap-2 mb-3">
+                  <span class="fs-4 fw-extrabold text-warning">$9.99</span>
+                  <span class="text-light text-decoration-line-through small opacity-75">$16.49</span>
+                </div>
+                <a href="#categories" class="btn btn-light btn-sm rounded-pill fw-bold w-100 text-dark shadow-sm">
+                  Stock Up <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
