@@ -658,3 +658,153 @@ footer a:hover {
 .bg-orange-soft { background-color: #fff7ed; }
 .text-warning { color: #ea580c !important; }
 
+/* ==========================================================================
+   DAY 4: DYNAMIC FILTERING & LIVE SEARCH STYLING
+   ========================================================================== */
+
+/* Filter Sidebar Sticky Behavior & Layout */
+.filter-sidebar {
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.filter-section h6 {
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+/* Custom Price Slider Range Styling */
+.form-range.price-slider,
+.form-range.price-slider-mobile {
+  height: 6px;
+  border-radius: 5px;
+  background-color: #e2e8f0;
+}
+
+.form-range::-webkit-slider-thumb {
+  background: var(--primary-green) !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3) !important;
+  transition: all 0.15s ease-in-out;
+}
+
+.form-range::-webkit-slider-thumb:active {
+  background: var(--primary-dark) !important;
+  transform: scale(1.15);
+}
+
+.form-range::-moz-range-thumb {
+  background: var(--primary-green) !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3) !important;
+  transition: all 0.15s ease-in-out;
+}
+
+.form-range::-moz-range-thumb:active {
+  background: var(--primary-dark) !important;
+  transform: scale(1.15);
+}
+
+/* Brand checkbox styling */
+.brand-list-container,
+.brand-list-container-mobile {
+  padding-right: 4px;
+}
+
+.brand-list-container::-webkit-scrollbar,
+.brand-list-container-mobile::-webkit-scrollbar {
+  width: 5px;
+}
+
+.brand-list-container::-webkit-scrollbar-track,
+.brand-list-container-mobile::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.brand-list-container::-webkit-scrollbar-thumb,
+.brand-list-container-mobile::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.brand-list-container::-webkit-scrollbar-thumb:hover,
+.brand-list-container-mobile::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Custom Bootstrap form check modification */
+.form-check-input:checked {
+  background-color: var(--primary-green) !important;
+  border-color: var(--primary-green) !important;
+}
+
+.form-check-input:focus {
+  border-color: var(--primary-green) !important;
+  box-shadow: 0 0 0 0.25rem rgba(16, 185, 129, 0.15) !important;
+}
+
+.form-check-label {
+  font-size: 0.9rem;
+  color: #475569;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.form-check-label:hover {
+  color: var(--primary-green);
+}
+
+/* Offcanvas custom overrides */
+.offcanvas {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.offcanvas-header {
+  padding: 1.25rem 1.5rem;
+}
+
+.offcanvas-body {
+  padding: 1.5rem;
+}
+
+/* Fade in animation for product listing transitions */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.product-card-animated {
+  animation: cardFadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Styled empty state container */
+.empty-state-card {
+  background: #ffffff;
+  border: 1px dashed #cbd5e1;
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  transition: all 0.3s ease;
+}
+
+.empty-state-card:hover {
+  border-color: var(--primary-green);
+  box-shadow: var(--card-shadow);
+}
+

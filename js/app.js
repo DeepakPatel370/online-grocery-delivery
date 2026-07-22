@@ -6,18 +6,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log('FreshMart Grocery System Initialized - Day 3');
   
-  // Search Input listener
   const mainSearchInput = document.getElementById('mainSearchInput');
   const mobileSearchInput = document.getElementById('mobileSearchInput');
-
-  [mainSearchInput, mobileSearchInput].forEach(input => {
-    if (input) {
-      input.addEventListener('input', (e) => {
-        const query = e.target.value.trim();
-        console.log('Searching for:', query);
-      });
-    }
-  });
 
   // Initialize Hero Carousel with Bootstrap Carousel API
   const heroCarouselEl = document.getElementById('heroCarousel');
@@ -47,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Day 3: Grocery Categories & Product Cards Rendering ---
+  // --- Day 3 & 4: Grocery Categories, Filtering & Product Cards Rendering ---
   const productsGrid = document.getElementById('productsGrid');
   const categoryButtons = document.querySelectorAll('.btn-category');
   const cartCountEl = document.getElementById('cartCount');
@@ -55,31 +45,181 @@ document.addEventListener('DOMContentLoaded', () => {
   // Keep track of total items added in current session
   let sessionCartCount = 0;
 
-  function renderProducts(categoryFilter = 'all') {
+  // --- Day 4: State management for filtering, search and sorting ---
+  const filterState = {
+    category: 'all',
+    searchQuery: '',
+    diet: 'all',
+    maxPrice: 0,
+    selectedBrands: new Set(),
+    sortBy: 'featured'
+  };
+
+  // Dynamic Range and Brand Setup limits
+  let minPrice = 0;
+  let maxPrice = 0;
+  let allBrands = [];
+
+  function initFilterLimits() {
+    if (typeof PRODUCTS_DATA === 'undefined' || PRODUCTS_DATA.length === 0) return;
+    
+    // Find min and max price
+    const prices = PRODUCTS_DATA.map(p => p.price);
+    minPrice = Math.min(...prices);
+    maxPrice = Math.max(...prices);
+    
+    // Default initial maxPrice to max price
+    filterState.maxPrice = maxPrice;
+    
+    // Update price slider elements
+    const desktopSlider = document.getElementById('priceRange');
+    const mobileSlider = document.getElementById('priceRangeMobile');
+    
+    [desktopSlider, mobileSlider].forEach(slider => {
+      if (slider) {
+        slider.min = Math.floor(minPrice);
+        slider.max = Math.ceil(maxPrice);
+        slider.step = '0.01';
+        slider.value = Math.ceil(maxPrice);
+      }
+    });
+
+    // Update max indicators text
+    const maxInds = document.querySelectorAll('.price-max-indicator, .price-max-indicator-mobile');
+    maxInds.forEach(ind => ind.textContent = Math.ceil(maxPrice).toFixed(2));
+    
+    updatePriceIndicators(Math.ceil(maxPrice));
+
+    // Get unique brands
+    const brandsSet = new Set(PRODUCTS_DATA.map(p => p.brand));
+    allBrands = Array.from(brandsSet).sort();
+
+    // Render Brand lists in DOM
+    renderBrandCheckboxes();
+  }
+
+  function updatePriceIndicators(val) {
+    const indicators = document.querySelectorAll('.price-val-indicator, .price-val-indicator-mobile');
+    indicators.forEach(ind => ind.textContent = parseFloat(val).toFixed(2));
+  }
+
+  function renderBrandCheckboxes() {
+    const brandList = document.getElementById('brandList');
+    const brandListMobile = document.getElementById('brandListMobile');
+    
+    if (brandList) brandList.innerHTML = '';
+    if (brandListMobile) brandListMobile.innerHTML = '';
+    
+    allBrands.forEach((brand, idx) => {
+      // Desktop checkbox
+      if (brandList) {
+        const item = document.createElement('div');
+        item.className = 'form-check mb-2';
+        item.innerHTML = `
+          <input class="form-check-input brand-checkbox" type="checkbox" value="${brand}" id="brand_${idx}">
+          <label class="form-check-label text-truncate w-100" for="brand_${idx}" title="${brand}">
+            ${brand}
+          </label>
+        `;
+        brandList.appendChild(item);
+      }
+      
+      // Mobile checkbox
+      if (brandListMobile) {
+        const item = document.createElement('div');
+        item.className = 'form-check mb-2';
+        item.innerHTML = `
+          <input class="form-check-input brand-checkbox-mobile" type="checkbox" value="${brand}" id="brand_mobile_${idx}">
+          <label class="form-check-label text-truncate w-100" for="brand_mobile_${idx}" title="${brand}">
+            ${brand}
+          </label>
+        `;
+        brandListMobile.appendChild(item);
+      }
+    });
+  }
+
+  function applyFiltersAndRender() {
     if (!productsGrid) return;
     
     // Clear grid
     productsGrid.innerHTML = '';
     
     // Filter products
-    const filteredProducts = categoryFilter === 'all'
-      ? PRODUCTS_DATA
-      : PRODUCTS_DATA.filter(p => p.category === categoryFilter);
+    const filtered = PRODUCTS_DATA.filter(product => {
+      // 1. Category Filter
+      const matchesCategory = filterState.category === 'all' || product.category === filterState.category;
       
-    if (filteredProducts.length === 0) {
+      // 2. Diet Filter
+      const matchesDiet = filterState.diet === 'all' || 
+                           (filterState.diet === 'veg' && product.isVeg) || 
+                           (filterState.diet === 'non-veg' && !product.isVeg);
+      
+      // 3. Price Filter
+      const matchesPrice = product.price <= filterState.maxPrice;
+      
+      // 4. Brand Filter
+      const matchesBrand = filterState.selectedBrands.size === 0 || filterState.selectedBrands.has(product.brand);
+      
+      // 5. Search Query Filter
+      const query = filterState.searchQuery.toLowerCase().trim();
+      const matchesSearch = query === '' || 
+                            product.name.toLowerCase().includes(query) ||
+                            product.brand.toLowerCase().includes(query) ||
+                            product.description.toLowerCase().includes(query);
+                            
+      return matchesCategory && matchesDiet && matchesPrice && matchesBrand && matchesSearch;
+    });
+    
+    // Apply Sorting
+    if (filterState.sortBy === 'price-low') {
+      filtered.sort((a, b) => a.price - b.price);
+    } else if (filterState.sortBy === 'price-high') {
+      filtered.sort((a, b) => b.price - a.price);
+    } else if (filterState.sortBy === 'rating') {
+      filtered.sort((a, b) => b.rating - a.rating);
+    } else {
+      // featured / default
+      filtered.sort((a, b) => a.id - b.id);
+    }
+    
+    // Update count labels
+    const productCountEl = document.getElementById('productCount');
+    const totalProductCountEl = document.getElementById('totalProductCount');
+    if (productCountEl) productCountEl.textContent = filtered.length;
+    if (totalProductCountEl) {
+      const currentCategoryTotal = filterState.category === 'all' 
+        ? PRODUCTS_DATA.length 
+        : PRODUCTS_DATA.filter(p => p.category === filterState.category).length;
+      totalProductCountEl.textContent = currentCategoryTotal;
+    }
+    
+    // If no match found
+    if (filtered.length === 0) {
       productsGrid.innerHTML = `
         <div class="col-12 text-center py-5">
-          <i class="bi bi-inbox fs-1 text-muted"></i>
-          <p class="text-muted mt-2">No products found in this category.</p>
+          <div class="empty-state-card mx-auto" style="max-width: 480px;">
+            <i class="bi bi-inbox fs-1 text-success mb-3 d-block"></i>
+            <h5 class="fw-bold text-dark">No Products Found</h5>
+            <p class="text-muted small mb-4">We couldn't find any groceries matching your exact criteria. Try resetting filters or modifying your search.</p>
+            <button class="btn btn-success btn-clear-filters rounded-pill px-4 py-2">
+              <i class="bi bi-arrow-counterclockwise me-1"></i> Reset Filters
+            </button>
+          </div>
         </div>
       `;
+      
+      // Re-attach clear listeners in the empty state card
+      document.querySelectorAll('.btn-clear-filters').forEach(btn => {
+        btn.addEventListener('click', resetAllFilters);
+      });
       return;
     }
     
     // Render cards
-    filteredProducts.forEach(product => {
+    filtered.forEach(product => {
       const cardCol = document.createElement('div');
-      cardCol.className = 'col';
+      cardCol.className = 'col product-card-animated';
       
       const originalPriceHTML = product.originalPrice 
         ? `<span class="price-original">$${product.originalPrice.toFixed(2)}</span>` 
@@ -162,6 +302,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function resetAllFilters() {
+    // 1. Reset state
+    filterState.category = 'all';
+    filterState.searchQuery = '';
+    filterState.diet = 'all';
+    filterState.maxPrice = Math.ceil(maxPrice);
+    filterState.selectedBrands.clear();
+    filterState.sortBy = 'featured';
+    
+    // 2. Reset category active pills
+    categoryButtons.forEach(btn => {
+      if (btn.getAttribute('data-category') === 'all') {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+    
+    // 3. Reset search inputs
+    if (mainSearchInput) mainSearchInput.value = '';
+    if (mobileSearchInput) mobileSearchInput.value = '';
+    
+    // 4. Reset diet radio inputs
+    const allRadio = document.getElementById('dietAll');
+    const allRadioMobile = document.getElementById('dietAllMobile');
+    if (allRadio) allRadio.checked = true;
+    if (allRadioMobile) allRadioMobile.checked = true;
+    
+    // 5. Reset Price sliders
+    const desktopSlider = document.getElementById('priceRange');
+    const mobileSlider = document.getElementById('priceRangeMobile');
+    if (desktopSlider) desktopSlider.value = Math.ceil(maxPrice);
+    if (mobileSlider) mobileSlider.value = Math.ceil(maxPrice);
+    updatePriceIndicators(Math.ceil(maxPrice));
+    
+    // 6. Reset Brand checkboxes
+    document.querySelectorAll('.brand-checkbox, .brand-checkbox-mobile').forEach(cb => {
+      cb.checked = false;
+    });
+    
+    // 7. Reset Sort select
+    const sortSelect = document.getElementById('sortBySelect');
+    if (sortSelect) sortSelect.value = 'featured';
+    
+    // 8. Re-render
+    applyFiltersAndRender();
+  }
+
   // Set up category buttons filtering
   categoryButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -173,14 +361,138 @@ document.addEventListener('DOMContentLoaded', () => {
       clickedBtn.classList.add('active');
       
       // Filter & Render
-      const selectedCategory = clickedBtn.getAttribute('data-category');
-      renderProducts(selectedCategory);
+      filterState.category = clickedBtn.getAttribute('data-category');
+      applyFiltersAndRender();
     });
   });
 
-  // Initial render
+  // Setup dynamic brand listeners (using event delegation for simplicity)
+  const brandList = document.getElementById('brandList');
+  if (brandList) {
+    brandList.addEventListener('change', (e) => {
+      if (e.target.classList.contains('brand-checkbox')) {
+        const brand = e.target.value;
+        const checked = e.target.checked;
+        
+        // Sync mobile checkbox
+        const mobileCheck = document.querySelector(`.brand-checkbox-mobile[value="${brand}"]`);
+        if (mobileCheck) mobileCheck.checked = checked;
+        
+        if (checked) {
+          filterState.selectedBrands.add(brand);
+        } else {
+          filterState.selectedBrands.delete(brand);
+        }
+        applyFiltersAndRender();
+      }
+    });
+  }
+
+  const brandListMobile = document.getElementById('brandListMobile');
+  if (brandListMobile) {
+    brandListMobile.addEventListener('change', (e) => {
+      if (e.target.classList.contains('brand-checkbox-mobile')) {
+        const brand = e.target.value;
+        const checked = e.target.checked;
+        
+        // Sync desktop checkbox
+        const desktopCheck = document.querySelector(`.brand-checkbox[value="${brand}"]`);
+        if (desktopCheck) desktopCheck.checked = checked;
+        
+        if (checked) {
+          filterState.selectedBrands.add(brand);
+        } else {
+          filterState.selectedBrands.delete(brand);
+        }
+        applyFiltersAndRender();
+      }
+    });
+  }
+
+  // Setup Diet Filter Radio Listeners
+  document.querySelectorAll('.btn-diet').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      const val = e.target.value;
+      filterState.diet = val;
+      
+      // Sync mobile radio check
+      const mobRadio = document.querySelector(`.btn-diet-mobile[value="${val}"]`);
+      if (mobRadio) mobRadio.checked = true;
+      
+      applyFiltersAndRender();
+    });
+  });
+
+  document.querySelectorAll('.btn-diet-mobile').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      const val = e.target.value;
+      filterState.diet = val;
+      
+      // Sync desktop radio check
+      const deskRadio = document.querySelector(`.btn-diet[value="${val}"]`);
+      if (deskRadio) deskRadio.checked = true;
+      
+      applyFiltersAndRender();
+    });
+  });
+
+  // Setup Price slider Range Listeners
+  const desktopSlider = document.getElementById('priceRange');
+  const mobileSlider = document.getElementById('priceRangeMobile');
+
+  [desktopSlider, mobileSlider].forEach(slider => {
+    if (slider) {
+      slider.addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value);
+        
+        // Sync other slider
+        if (slider === desktopSlider && mobileSlider) {
+          mobileSlider.value = val;
+        } else if (slider === mobileSlider && desktopSlider) {
+          desktopSlider.value = val;
+        }
+        
+        updatePriceIndicators(val);
+        filterState.maxPrice = val;
+        applyFiltersAndRender();
+      });
+    }
+  });
+
+  // Setup Sort listener
+  const sortSelect = document.getElementById('sortBySelect');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', (e) => {
+      filterState.sortBy = e.target.value;
+      applyFiltersAndRender();
+    });
+  }
+
+  // Setup Clear filter buttons listeners
+  document.querySelectorAll('.btn-clear-filters').forEach(btn => {
+    btn.addEventListener('click', resetAllFilters);
+  });
+
+  // Search input listeners (Syncing desktop and mobile search bars)
+  [mainSearchInput, mobileSearchInput].forEach(input => {
+    if (input) {
+      input.addEventListener('input', (e) => {
+        const queryVal = e.target.value;
+        if (input === mainSearchInput && mobileSearchInput) {
+          mobileSearchInput.value = queryVal;
+        } else if (input === mobileSearchInput && mainSearchInput) {
+          mainSearchInput.value = queryVal;
+        }
+        filterState.searchQuery = queryVal;
+        applyFiltersAndRender();
+      });
+    }
+  });
+
+  // Initial render & limits setup
   if (typeof PRODUCTS_DATA !== 'undefined') {
-    renderProducts('all');
+    initFilterLimits();
+    applyFiltersAndRender();
   } else {
     console.error('PRODUCTS_DATA is not defined. Make sure products.js is loaded before app.js');
   }

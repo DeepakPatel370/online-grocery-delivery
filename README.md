@@ -17,7 +17,7 @@ A responsive, dynamic, and interactive web application for an **Online Grocery D
 - [x] **Day 3: Grocery Categories Section & Responsive Product Cards**
   - Product dataset (`js/products.js`) with Fruits & Vegetables, Dairy, Snacks, Beverages, Household items.
   - Bootstrap card design with Veg/Non-Veg badges, pricing, ratings, and action buttons.
-- [ ] **Day 4: JavaScript Dynamic Filtering System & Live Search**
+- [x] **Day 4: JavaScript Dynamic Filtering System & Live Search**
   - Real-time filtering by Veg/Non-Veg status, Category, Price Range, and Brand.
   - Live search connected to the search bar.
 - [ ] **Day 5: Interactive Product Details Modal**
