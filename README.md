@@ -14,7 +14,7 @@ A responsive, dynamic, and interactive web application for an **Online Grocery D
 - [x] **Day 2: Hero Section, Offers Carousel & Promotional Banners**
   - Bootstrap 5 Carousel featuring discount banners, festival offers, and combo deals.
   - Feature badges for value propositions (30-min express delivery, 100% organic, 24/7 support).
-- [ ] **Day 3: Grocery Categories Section & Responsive Product Cards**
+- [x] **Day 3: Grocery Categories Section & Responsive Product Cards**
   - Product dataset (`js/products.js`) with Fruits & Vegetables, Dairy, Snacks, Beverages, Household items.
   - Bootstrap card design with Veg/Non-Veg badges, pricing, ratings, and action buttons.
 - [ ] **Day 4: JavaScript Dynamic Filtering System & Live Search**
