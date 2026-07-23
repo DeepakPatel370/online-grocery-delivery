@@ -20,13 +20,13 @@ A responsive, dynamic, and interactive web application for an **Online Grocery D
 - [x] **Day 4: JavaScript Dynamic Filtering System & Live Search**
   - Real-time filtering by Veg/Non-Veg status, Category, Price Range, and Brand.
   - Live search connected to the search bar.
-- [ ] **Day 5: Interactive Product Details Modal**
+- [x] **Day 5: Interactive Product Details Modal**
   - Bootstrap Quick View modal dynamically populated per item.
   - Quantity controls (`+` / `-`) inside modal.
-- [ ] **Day 6: Shopping Cart System & LocalStorage Persistence**
+- [x] **Day 6: Shopping Cart System & LocalStorage Persistence**
   - Offcanvas / Drawer cart view with real-time total calculations.
   - Persistence across browser reloads using `localStorage`.
-- [ ] **Day 7: Final Polish, Micro-Animations, Mobile Responsiveness & Documentation**
+- [x] **Day 7: Final Polish, Micro-Animations, Mobile Responsiveness & Documentation**
   - UI/UX enhancements and final mobile viewport auditing.
 
 ---

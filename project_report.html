@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshMart Project Report</title>
+  <!-- Outfit Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-green: #10b981;
+      --primary-dark: #047857;
+      --dark-slate: #0f172a;
+      --light-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      --font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--light-bg);
+      color: #334155;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 50px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .no-print-bar {
+      background: var(--dark-slate);
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-print {
+      background-color: var(--primary-green);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.25s ease;
+    }
+
+    .btn-print:hover {
+      background-color: var(--primary-dark);
+    }
+
+    h1, h2, h3, h4 {
+      color: var(--dark-slate);
+      font-weight: 700;
+    }
+
+    h1 {
+      border-bottom: 2px solid var(--primary-green);
+      padding-bottom: 12px;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2 {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 8px;
+      margin-top: 40px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-color);
+      margin: 30px 0;
+    }
+
+    code {
+      font-family: Consolas, Monaco, monospace;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    pre {
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    pre code {
+      background-color: transparent;
+      color: inherit;
+      padding: 0;
+      font-size: 0.875rem;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .badge-veg {
+      color: #047857;
+      background-color: #ecfdf5;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.8em;
+      font-weight: 700;
+    }
+
+    .diagram-box {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .diagram-box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .diagram-caption {
+      font-size: 0.85em;
+      color: #64748b;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    @media print {
+      .no-print-bar {
+        display: none !important;
+      }
+      body {
+        background-color: white;
+      }
+      .container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+      }
+      pre {
+        background-color: #f1f5f9;
+        color: #0f172a;
+        border: 1px solid var(--border-color);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      pre code {
+        color: #0f172a;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="no-print-bar">
+    <div style="font-weight: 600;">FreshMart Project Report Viewer</div>
+    <button class="btn-print" onclick="window.print()">
+      <i class="bi bi-printer-fill"></i> Save as PDF / Print
+    </button>
+  </div>
+
+  <div class="container">
+    <h1><i class="bi bi-journal-text text-success"></i> FreshMart Project Documentation</h1>
+    <p class="text-muted"><strong>System:</strong> Online Grocery Delivery System<br><strong>Date:</strong> July 23, 2026</p>
+
+    <h2>🎯 Aim</h2>
+    <p>To design, develop, and deploy <strong>FreshMart</strong>—a responsive, interactive, and premium <strong>Online Grocery Delivery System</strong> using a web frontend (HTML5, CSS3, Bootstrap 5, JavaScript) integrated with a local database backend (Node.js, Express, SQLite3) to enable real-time product filtering, quick-view details display, shopping cart management, promo code calculation, local persistence, and transaction checkout tracking.</p>
+
+    <h2>📋 Procedure</h2>
+    
+    <h3>Phase 1: Frontend & UI Design</h3>
+    <ol>
+      <li>Define visual design variables (colors, fonts, shadow tokens, glassmorphism filters) in <code>css/styles.css</code>.</li>
+      <li>Layout the structure of the application inside <code>index.html</code> using Bootstrap 5's responsive grid system, implementing a top announcement bar, glassmorphism navbar, promotional offer banners, category filter tabs, and a footer.</li>
+      <li>Integrate an Offcanvas shopping cart drawer, a Quick View product modal, and Toast notifications container for native visual feedback.</li>
+    </ol>
+
+    <h3>Phase 2: Client-side Interactivity (JavaScript)</h3>
+    <ol>
+      <li>Initialize filter states (category, search queries, brand selections, price range constraints, and sorting preferences).</li>
+      <li>Render product cards dynamically based on active filters and handle UI feedback (added animation tags, scale transitions on the cart badge).</li>
+      <li>Bind event handlers to the product card Quick View anchors to dynamically populate and launch the details modal with a quantity selector.</li>
+      <li>Manage shopping cart states inside local memory and synchronize with the browser's <code>localStorage</code> to preserve items across reloads.</li>
+    </ol>
+
+    <h3>Phase 3: Server & Database Integration</h3>
+    <ol>
+      <li>Set up a Node.js runtime inside the <code>/server</code> directory and declare dependencies (<code>express</code>, <code>cors</code>, <code>sqlite3</code>) in <code>server/package.json</code>.</li>
+      <li>Write <code>server/db.js</code> to configure SQLite, establish connection schemas for <code>products</code> and <code>orders</code> tables, and implement auto-seeding behavior to insert raw catalog data on first boot.</li>
+      <li>Develop REST API routes inside <code>server/server.js</code>:
+        <ul>
+          <li><code>GET /api/products</code>: queries and maps catalog table data.</li>
+          <li><code>POST /api/orders</code>: validates purchase data, inserts transactional records, and responds with unique tracking IDs.</li>
+        </ul>
+      </li>
+      <li>Update frontend fetch operations inside <code>js/app.js</code> to pull products from the server and POST cart details upon order checkout.</li>
+    </ol>
+
+    <h2>💻 Coding Sample (For All Modules)</h2>
+
+    <h3>• Front End (JavaScript)</h3>
+    <p>Key logic segments from <code>js/app.js</code>:</p>
+
+    <h4>1. Fetching Catalog Dynamically</h4>
+    <pre><code>async function fetchProducts() {
+  try {
+    const response = await fetch('http://localhost:5000/api/products');
+    if (!response.ok) throw new Error('API response error');
+    const data = await response.json();
+    
+    if (Array.isArray(PRODUCTS_DATA)) {
+      PRODUCTS_DATA.length = 0;
+      PRODUCTS_DATA.push(...data);
+    }
+  } catch (err) {
+    console.warn('Failed to fetch products from backend, falling back to static local data:', err);
+  }
+}</code></pre>
+
+    <h4>2. Cart Drawer State & Total Recalculation</h4>
+    <pre><code>function updateCartUI() {
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  if (cartCountEl) cartCountEl.textContent = totalItems;
+
+  const cartItemsList = document.getElementById('cartItemsList');
+  if (!cartItemsList) return;
+
+  if (cart.length === 0) {
+    cartItemsList.innerHTML = `&lt;p class="text-muted text-center py-5"&gt;Your cart is empty.&lt;/p&gt;`;
+    updateTotals(0);
+    return;
+  }
+
+  cartItemsList.innerHTML = '';
+  cart.forEach(item => {
+    const product = PRODUCTS_DATA.find(p => p.id === item.id);
+    if (!product) return;
+    // Append row layout with quantity increment/decrement controls
+  });
+  
+  const subtotal = cart.reduce((sum, item) => {
+    const product = PRODUCTS_DATA.find(p => p.id === item.id);
+    return sum + (product ? product.price * item.quantity : 0);
+  }, 0);
+  updateTotals(subtotal);
+}</code></pre>
+
+    <h4>3. Client POST Order Checkout</h4>
+    <pre><code>const response = await fetch('http://localhost:5000/api/orders', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    items: cart,
+    subtotal,
+    deliveryFee,
+    discount,
+    total
+  })
+});
+const orderData = await response.json();
+// Populate success tracker modal using orderData.trackingCode</code></pre>
+
+    <h3>• Back End (Node.js & SQLite)</h3>
+    <p>Key server configuration files:</p>
+
+    <h4>1. SQLite Schema Configuration & Seeding (<code>server/db.js</code>)</h4>
+    <pre><code>const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database(path.join(__dirname, 'database.sqlite'));
+
+db.serialize(() => {
+  db.run(`
+    CREATE TABLE IF NOT EXISTS products (
+      id INTEGER PRIMARY KEY,
+      name TEXT NOT NULL,
+      price REAL NOT NULL,
+      originalPrice REAL,
+      isVeg INTEGER NOT NULL,
+      brand TEXT,
+      image TEXT
+    )
+  `);
+
+  db.get('SELECT COUNT(*) AS count FROM products', (err, row) => {
+    if (row.count === 0) {
+      const stmt = db.prepare(\`INSERT INTO products (id, name, price, originalPrice, isVeg, brand, image) VALUES (?, ?, ?, ?, ?, ?, ?)\`);
+      PRODUCTS_DATA.forEach(p => stmt.run(p.id, p.name, p.price, p.originalPrice, p.isVeg ? 1 : 0, p.brand, p.image));
+      stmt.finalize();
+    }
+  });
+});</code></pre>
+
+    <h4>2. Express Server Routes (<code>server/server.js</code>)</h4>
+    <pre><code>// POST /api/orders
+app.post('/api/orders', (req, res) => {
+  const { items, subtotal, deliveryFee, discount, total } = req.body;
+  const trackingCode = \`FM-\${Math.floor(100000 + Math.random() * 900000)}\`;
+
+  db.run(
+    \`INSERT INTO orders (trackingCode, items, subtotal, deliveryFee, discount, total) VALUES (?, ?, ?, ?, ?, ?)\`,
+    [trackingCode, JSON.stringify(items), subtotal, deliveryFee, discount, total],
+    function (err) {
+      if (err) return res.status(500).json({ error: err.message });
+      res.status(201).json({ orderId: this.lastID, trackingCode, total });
+    }
+  );
+});</code></pre>
+
+    <h2>🎓 Learning Outcome</h2>
+    <ul>
+      <li><strong>Responsive Styling Systems</strong>: Leveraged custom design tokens, CSS variables, and Bootstrap flex-grid combinations to construct layouts catering to varying screens.</li>
+      <li><strong>State Operations</strong>: Understood event state models and synchronizations to update quantities, calculate cart sums, and maintain local memory structures using <code>localStorage</code>.</li>
+      <li><strong>Database Persistency</strong>: Designed database table relationships, constructed query commands using SQLite3, and automated dataset seeding procedures inside file system resources.</li>
+      <li><strong>REST API Communications</strong>: Developed server pipelines in Node.js/Express, implemented cross-origin resource sharing (CORS) rules, parsed application endpoints, and handled server response payloads asynchronously on client browser engines.</li>
+    </ul>
+  </div>
+
+</body>
+</html>

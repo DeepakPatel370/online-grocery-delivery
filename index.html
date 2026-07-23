@@ -70,7 +70,7 @@
 
         <!-- Shopping Cart Button -->
         <div class="ms-lg-3 mt-2 mt-lg-0">
-          <button class="btn btn-cart" id="cartNavBtn" type="button">
+          <button class="btn btn-cart" id="cartNavBtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
             <i class="bi bi-cart3 fs-5"></i>
             <span>Cart</span>
             <span class="cart-badge" id="cartCount">0</span>
@@ -615,6 +615,115 @@
       <button class="btn btn-success w-100 rounded-pill btn-clear-filters py-2 mt-3">
         Clear All Filters
       </button>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Offcanvas Drawer -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title fw-bold text-dark" id="offcanvasCartLabel">
+        <i class="bi bi-cart3 text-success me-2"></i>Your Shopping Cart
+      </h5>
+      <button type="button" class="btn-close text-reset shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <!-- Cart Items List -->
+      <div class="cart-items-container flex-grow-1 overflow-y-auto mb-3" id="cartItemsList">
+        <!-- Dynamic cart items will be rendered here -->
+      </div>
+      <!-- Cart Summary & Actions -->
+      <div class="cart-summary-wrapper border-top pt-3">
+        <!-- Promo Code section -->
+        <div class="promo-code-box mb-3">
+          <div class="input-group">
+            <input type="text" class="form-control form-control-sm rounded-start-pill border-secondary-subtle ps-3" id="promoCodeInput" placeholder="Promo Code (e.g. FRESH35)">
+            <button class="btn btn-success btn-sm rounded-end-pill px-3" type="button" id="applyPromoBtn">Apply</button>
+          </div>
+          <div class="small mt-1 px-1" id="promoFeedback"></div>
+        </div>
+        <div class="d-flex justify-content-between mb-2 small text-muted">
+          <span>Subtotal</span>
+          <span class="fw-semibold text-dark" id="cartSubtotal">$0.00</span>
+        </div>
+        <div class="d-flex justify-content-between mb-2 small text-muted">
+          <span>Delivery Fee</span>
+          <span class="fw-semibold text-dark" id="cartDeliveryFee">$0.00</span>
+        </div>
+        <div class="d-flex justify-content-between mb-2 small text-muted d-none" id="promoDiscountRow">
+          <span>Discount (10%)</span>
+          <span class="fw-semibold text-danger" id="cartDiscount">-$0.00</span>
+        </div>
+        <div class="d-flex justify-content-between mb-3 border-top pt-2">
+          <span class="fw-bold text-dark">Estimated Total</span>
+          <span class="fw-bold text-success fs-5" id="cartTotal">$0.00</span>
+        </div>
+        <button class="btn btn-success w-100 rounded-pill py-2.5 fw-bold" id="checkoutBtn">
+          Proceed to Checkout <i class="bi bi-arrow-right ms-1"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Details Modal -->
+  <div class="modal fade" id="productDetailsModal" tabindex="-1" aria-labelledby="productDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 rounded-4 overflow-hidden shadow-lg">
+        <div class="modal-header border-0 pb-0 position-absolute end-0 top-0 z-3">
+          <button type="button" class="btn-close bg-white rounded-circle p-2 shadow-sm border border-secondary-subtle" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-0" id="productDetailsModalBody">
+          <!-- Dynamic modal contents will be rendered here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Success Modal -->
+  <div class="modal fade" id="checkoutSuccessModal" tabindex="-1" aria-labelledby="checkoutSuccessModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 rounded-4 overflow-hidden shadow-lg">
+        <div class="modal-body text-center p-5">
+          <div class="success-icon-wrapper mx-auto mb-4 bg-emerald-soft text-success rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+            <i class="bi bi-check-circle-fill fs-1"></i>
+          </div>
+          <h4 class="fw-bold text-dark mb-2" id="checkoutSuccessModalLabel">Order Confirmed!</h4>
+          <p class="text-muted small mb-4">Thank you for your order. We have received it and are preparing your fresh groceries for delivery.</p>
+          
+          <div class="order-summary-box bg-light rounded-3 p-3 mb-4 text-start">
+            <div class="d-flex justify-content-between mb-2 small">
+              <span class="text-muted">Order Total:</span>
+              <strong class="text-success" id="successOrderTotal">$0.00</strong>
+            </div>
+            <div class="d-flex justify-content-between mb-2 small">
+              <span class="text-muted">Estimated Delivery:</span>
+              <strong class="text-dark">Within 30 Minutes</strong>
+            </div>
+            <div class="d-flex justify-content-between small">
+              <span class="text-muted">Tracking Code:</span>
+              <strong class="text-dark text-uppercase" id="successTrackingCode">FM-123456</strong>
+            </div>
+          </div>
+          
+          <button type="button" class="btn btn-success w-100 rounded-pill py-2.5 fw-bold" data-bs-dismiss="modal">
+            Continue Shopping
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+    <div id="cartToast" class="toast border-0 rounded-4 shadow" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-success text-white border-0 rounded-top-4">
+        <i class="bi bi-cart-check-fill me-2"></i>
+        <strong class="me-auto">FreshMart Cart</strong>
+        <small class="text-white-50">Just now</small>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body bg-white rounded-bottom-4 py-3" id="cartToastBody">
+        Product successfully added to cart.
+      </div>
     </div>
   </div>
 
