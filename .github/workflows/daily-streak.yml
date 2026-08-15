@@ -1,0 +1,28 @@
+name: Daily Streak Automation
+
+on:
+  schedule:
+    # Runs daily at 12:00 UTC (5:30 PM IST)
+    - cron: '0 12 * * *'
+  workflow_dispatch: # Allows manual trigger from the Actions tab on GitHub
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Grants permission to push commits back to the repository
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Update Streak File
+        run: |
+          echo "Last automated streak update: $(date)" > streak.txt
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "Deepak patidar"
+          git config --global user.email "patidardeepak370@gmail.com"
+          git add streak.txt
+          git commit -m "chore: daily streak update [skip ci]" || echo "No changes to commit"
+          git push
